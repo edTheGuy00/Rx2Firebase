@@ -183,7 +183,7 @@ public class RxFirebaseUserTest {
 
    @Test
    public void delete() throws Exception {
-      TestObserver<Void> userTestObserver = RxFirebaseUser.delete(firebaseUser).test();
+      TestObserver<Void> userTestObserver = RxFirebaseUser.deleteUser(firebaseUser).test();
 
       testOnCompleteListener.getValue().onComplete(voidTask);
       testOnSuccessListener.getValue().onSuccess(voidTask);
@@ -196,7 +196,7 @@ public class RxFirebaseUserTest {
 
    @Test
    public void deleteError() throws Exception {
-      TestObserver<Void> userTestObserver = RxFirebaseUser.delete(firebaseUser).test();
+      TestObserver<Void> userTestObserver = RxFirebaseUser.deleteUser(firebaseUser).test();
 
       testOnFailureListener.getValue().onFailure(EXCEPTION);
       verify(firebaseUser).delete();
