@@ -2,8 +2,8 @@ buildscript {
     ext {
         rx_version = "2.1.0"
         rx_android_version = "2.0.1"
-        firebase_version = "11.2.2"
-        support_version = "26.0.1"
+        firebase_version = "11.8.0"
+        support_version = "26.1.0"
     }
 }
 apply plugin: 'com.android.library'
@@ -17,7 +17,7 @@ android {
     }
 
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 14
@@ -35,12 +35,12 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     provided "com.google.firebase:firebase-auth:$firebase_version"
     provided "com.google.firebase:firebase-database:$firebase_version"
     provided "com.google.firebase:firebase-storage:$firebase_version"
-    provided "com.android.support:recyclerview-v7:$support_version"
     compile "io.reactivex.rxjava2:rxjava:$rx_version"
     compile "io.reactivex.rxjava2:rxandroid:$rx_android_version"
     testCompile 'junit:junit:4.12'
-    testCompile "org.mockito:mockito-core:2.2.16"
+    testCompile "org.mockito:mockito-core:2.8.47"
 }
