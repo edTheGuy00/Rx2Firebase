@@ -4,7 +4,6 @@ import android.support.annotation.NonNull
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.Query
-import durdinapps.rxfirebase2.RxFirebaseDatabase.*
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
