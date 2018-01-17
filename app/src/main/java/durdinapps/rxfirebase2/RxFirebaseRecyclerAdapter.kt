@@ -43,11 +43,11 @@ abstract class RxFirebaseRecyclerAdapter<ViewHolder : RecyclerView.ViewHolder, T
     }
 
     fun manageChildItem(item: RxFirebaseChildEvent<DataSnapshot>) {
-        when (item.eventType) {
-            RxFirebaseChildEvent.EventType.ADDED -> addItem(item.value, item.previousChildName)
-            RxFirebaseChildEvent.EventType.CHANGED -> changeItem(item.value, item.previousChildName)
-            RxFirebaseChildEvent.EventType.REMOVED -> removeItem(item.value)
-            RxFirebaseChildEvent.EventType.MOVED -> onItemMoved(item.value, item.previousChildName)
+        when (item.getEventType()) {
+            RxFirebaseChildEvent.EventType.ADDED -> addItem(item.getValue(), item.getPreviousChildName())
+            RxFirebaseChildEvent.EventType.CHANGED -> changeItem(item.getValue(), item.getPreviousChildName()!!)
+            RxFirebaseChildEvent.EventType.REMOVED -> removeItem(item.getValue())
+            RxFirebaseChildEvent.EventType.MOVED -> onItemMoved(item.getValue(), item.getPreviousChildName())
         }
     }
 
