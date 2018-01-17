@@ -4,8 +4,8 @@ package durdinapps.rxfirebase2
 
 import android.support.annotation.NonNull
 import com.google.firebase.database.*
-import durdinapps.rxfirebase2.DataSnapshotMapper.DATA_SNAPSHOT_EXISTENCE_PREDICATE
 import durdinapps.rxfirebase2.exceptions.RxFirebaseDataException
+import durdinapps.rxfirebase2.DataSnapshotMapper.Companion.DATA_SNAPSHOT_EXISTENCE_PREDICATE
 import io.reactivex.*
 import io.reactivex.functions.Function
 
@@ -29,6 +29,8 @@ fun observeValueEvent(@NonNull query: Query,
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     emitter.onNext(dataSnapshot)
+                } else {
+                    emitter.onComplete()
                 }
             }
 
