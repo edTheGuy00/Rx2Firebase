@@ -15,6 +15,7 @@ import io.reactivex.functions.Function
  * @param query    reference represents a particular location in your Database and can be used for reading or writing data to that Database location.
  * @param strategy {@link BackpressureStrategy} associated to this {@link Flowable}
  * @return a {@link Flowable} which emits when a value of the database change in the given query.
+ * onComplete called if the dataSnapShot doesn't exist
  */
 
 @NonNull
@@ -51,7 +52,7 @@ fun observeValueEvent(@NonNull query: Query,
  *
  * @param query reference represents a particular location in your Database and can be used for reading or writing data to that Database location.
  * @return a {@link Maybe} which emits the actual state of the database for the given query. onSuccess will be only call when
- * the given {@link DataSnapshot} exists.
+ * the given {@link DataSnapshot} exists. onComplete called if the dataSnapShot doesn't exist
  */
 @NonNull
 fun observeSingleValueEvent(@NonNull query: Query):
@@ -62,8 +63,9 @@ fun observeSingleValueEvent(@NonNull query: Query):
             fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     emitter.onSuccess(dataSnapshot)
+                } else {
+                    emitter.onComplete()
                 }
-                emitter.onComplete()
             }
 
             override
